@@ -25,7 +25,6 @@ body {
   min-height: 100vh;
 }
 
-/* ── SIDEBAR ── */
 .sidebar {
   width: var(--sidebar);
   background: var(--surface);
@@ -78,7 +77,6 @@ body {
   border-top: 1px solid var(--border);
 }
 
-/* ── MAIN ── */
 .main {
   margin-left: var(--sidebar);
   flex: 1;
@@ -86,7 +84,6 @@ body {
   max-width: 1300px;
 }
 
-/* ── PAGE HEADER ── */
 .page-header {
   display: flex;
   justify-content: space-between;
@@ -97,7 +94,6 @@ body {
 .page-title { font-size: 1.5rem; font-weight: 700; }
 .page-sub   { color: var(--muted); font-size: .82rem; margin-top: .2rem; }
 
-/* ── STAT CARDS ── */
 .stats-row {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -133,14 +129,12 @@ body {
 .stat-card.purple .stat-value { color: var(--purple); }
 .stat-card.yellow .stat-value { color: var(--yellow); }
 
-/* ── DASHBOARD GRID ── */
 .dash-grid {
   display: grid;
   grid-template-columns: 1fr 1.4fr;
   gap: 1.25rem;
 }
 
-/* ── CARD ── */
 .card {
   background: var(--card);
   border: 1px solid var(--border);
@@ -160,7 +154,6 @@ body {
 
 .card-body { padding: 1.25rem; }
 
-/* ── STATUS BARS ── */
 .status-item {
   display: flex;
   align-items: center;
@@ -172,7 +165,6 @@ body {
 .bar-fill  { height: 100%; border-radius: 99px; }
 .status-num { font-size: .8rem; width: 20px; text-align: right; color: var(--text); font-weight: 600; }
 
-/* ── RECENT TABLE IN DASHBOARD ── */
 .recent-row {
   display: flex;
   justify-content: space-between;
@@ -185,7 +177,6 @@ body {
 .recent-title { font-weight: 600; }
 .recent-sub   { color: var(--muted); font-size: .75rem; margin-top: .1rem; }
 
-/* ── TABLE ── */
 .table-wrap { overflow: hidden; }
 table { width: 100%; border-collapse: collapse; font-size: .85rem; }
 thead th {
@@ -203,7 +194,6 @@ tbody tr:last-child { border-bottom: none; }
 tbody tr:hover { background: rgba(255,255,255,.025); }
 tbody td { padding: .8rem 1rem; }
 
-/* ── BADGES ── */
 .badge {
   display: inline-block;
   padding: .2rem .55rem;
@@ -218,7 +208,6 @@ tbody td { padding: .8rem 1rem; }
 .badge-rejected   { background: rgba(248,113,113,.15); color: var(--red); }
 .badge-withdrawn  { background: rgba(100,116,139,.15); color: var(--muted); }
 
-/* ── BUTTONS ── */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -239,7 +228,6 @@ tbody td { padding: .8rem 1rem; }
 .btn-red    { background: var(--red);     color: #fff; }
 .btn-sm     { padding: .28rem .6rem; font-size: .75rem; }
 
-/* ── FORMS ── */
 .form-card {
   background: var(--card);
   border: 1px solid var(--border);
@@ -277,10 +265,8 @@ textarea { min-height: 80px; resize: vertical; }
 .check-row { display: flex; align-items: center; gap: .5rem; }
 .check-row input { width: auto; accent-color: var(--accent); }
 
-/* ── ACTIONS ── */
 .actions { display: flex; gap: .4rem; }
 
-/* ── MODAL OVERLAY for ADD FORMS ── */
 .modal-bg {
   display: none;
   position: fixed;
@@ -316,7 +302,6 @@ textarea { min-height: 80px; resize: vertical; }
 }
 .modal-close:hover { color: var(--text); }
 
-/* ── JOB MATCH ── */
 .match-card {
   background: var(--card);
   border: 1px solid var(--border);
@@ -341,7 +326,6 @@ textarea { min-height: 80px; resize: vertical; }
 .hit  { background: rgba(74,222,128,.15);  color: var(--accent); }
 .miss { background: rgba(248,113,113,.15); color: var(--red); }
 
-/* ── ALERT ── */
 .alert {
   padding: .7rem 1rem;
   border-radius: 6px;
