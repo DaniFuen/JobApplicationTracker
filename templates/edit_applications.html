@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Edit Application{% endblock %}
+{% block content %}
+<div class="page-header">
+  <div class="page-title">Edit Application</div>
+  <a href="/applications" class="btn btn-ghost">← Back</a>
+</div>
+<div class="form-card">
+  <form method="POST">
+    <div class="form-group">
+      <label>Job *</label>
+      <select name="job_id" required>
+        {% for j in jobs %}
+        <option value="{{ j.job_id }}" {% if application.job_id == j.job_id %}selected{% endif %}>{{ j.company_name }} – {{ j.job_title }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>Date Applied *</label><input type="date" name="application_date" value="{{ application.application_date }}" required></div>
+      <div class="form-group">
+        <label>Status</label>
+        <select name="status">
+          {% for s in ['Applied','Screening','Interview','Offer','Rejected','Withdrawn'] %}
+          <option {% if application.status == s %}selected{% endif %}>{{ s }}</option>
+          {% endfor %}
+        </select>
+      </div>
+    </div>
+    <div class="form-group"><label>Resume Version</label><input type="text" name="resume_version" value="{{ application.resume_version or '' }}"></div>
+    <div class="form-group">
+      <label class="check-row"><input type="checkbox" name="cover_letter_sent" {% if application.cover_letter_sent %}checked{% endif %}> Cover Letter Sent</label>
+    </div>
+    <div class="form-group"><label>Notes</label><textarea name="notes">{{ application.notes or '' }}</textarea></div>
+    <button type="submit" class="btn btn-green">Save Changes</button>
+  </form>
+</div>
+{% endblock %}

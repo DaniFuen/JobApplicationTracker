@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Edit Company{% endblock %}
+{% block content %}
+<div class="page-header">
+  <div class="page-title">Edit Company</div>
+  <a href="/companies" class="btn btn-ghost">← Back</a>
+</div>
+<div class="form-card">
+  <form method="POST">
+    <div class="form-group"><label>Company Name *</label><input type="text" name="company_name" value="{{ company.company_name }}" required></div>
+    <div class="form-row">
+      <div class="form-group"><label>Industry</label><input type="text" name="industry" value="{{ company.industry or '' }}"></div>
+      <div class="form-group"><label>Website</label><input type="text" name="website" value="{{ company.website or '' }}"></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>City</label><input type="text" name="city" value="{{ company.city or '' }}"></div>
+      <div class="form-group"><label>State</label><input type="text" name="state" value="{{ company.state or '' }}"></div>
+    </div>
+    <div class="form-group"><label>Notes</label><textarea name="notes">{{ company.notes or '' }}</textarea></div>
+    <button type="submit" class="btn btn-green">Save Changes</button>
+  </form>
+</div>
+{% endblock %}

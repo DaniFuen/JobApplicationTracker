@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Edit Job{% endblock %}
+{% block content %}
+<div class="page-header">
+  <div class="page-title">Edit Job</div>
+  <a href="/jobs" class="btn btn-ghost">← Back</a>
+</div>
+<div class="form-card">
+  <form method="POST">
+    <div class="form-group">
+      <label>Company *</label>
+      <select name="company_id" required>
+        {% for c in companies %}
+        <option value="{{ c.company_id }}" {% if job.company_id == c.company_id %}selected{% endif %}>{{ c.company_name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="form-group"><label>Job Title *</label><input type="text" name="job_title" value="{{ job.job_title }}" required></div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Job Type</label>
+        <select name="job_type">
+          {% for t in ['Full-time','Part-time','Contract','Internship'] %}
+          <option {% if job.job_type == t %}selected{% endif %}>{{ t }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="form-group"><label>Date Posted</label><input type="date" name="date_posted" value="{{ job.date_posted or '' }}"></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>Salary Min</label><input type="number" name="salary_min" value="{{ job.salary_min or '' }}"></div>
+      <div class="form-group"><label>Salary Max</label><input type="number" name="salary_max" value="{{ job.salary_max or '' }}"></div>
+    </div>
+    <div class="form-group"><label>Job URL</label><input type="text" name="job_url" value="{{ job.job_url or '' }}"></div>
+    <div class="form-group"><label>Requirements (comma-separated)</label><input type="text" name="requirements" value="{{ job.requirements_str or '' }}"></div>
+    <button type="submit" class="btn btn-green">Save Changes</button>
+  </form>
+</div>
+{% endblock %}

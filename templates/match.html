@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}Job Match{% endblock %}
+{% block content %}
+
+<div class="page-header">
+  <div>
+    <div class="page-title">Job Match</div>
+    <div class="page-sub">Enter your skills to find matching jobs</div>
+  </div>
+</div>
+
+<div class="form-card" style="margin-bottom:1.75rem;">
+  <form method="POST" action="/match">
+    <div class="form-group">
+      <label>Your Skills (comma-separated)</label>
+      <input type="text" name="skills" placeholder="e.g. Python, SQL, Flask, AWS" value="{{ user_skills }}">
+    </div>
+    <button type="submit" class="btn btn-green">Find Matches ⚡</button>
+  </form>
+</div>
+
+{% if results %}
+  <div class="page-sub" style="margin-bottom:1rem;">{{ results|length }} jobs ranked by match</div>
+  {% for r in results %}
+  <div class="match-card">
+    <div class="match-top">
+      <div>
+        <div class="match-title">{{ r.job_title }}</div>
+        <div class="match-company">{{ r.company_name }}
+          {% if r.salary_min and r.salary_max %}
+          · ${{ "{:,}".format(r.salary_min) }} – ${{ "{:,}".format(r.salary_max) }}
+          {% endif %}
+        </div>
+      </div>
+      <div class="match-pct">{{ r.pct }}%</div>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill" style="width:{{ r.pct }}%;"></div>
+    </div>
+    <div style="font-size:.8rem;">
+      <strong style="color:var(--accent);">Matched ({{ r.matched|length }}/{{ r.total }}):</strong>
+      {% for s in r.matched %}<span class="skill-tag hit">{{ s }}</span>{% endfor %}
+      {% if not r.matched %}<span style="color:var(--muted);">none</span>{% endif %}
+      {% if r.missing %}
+        &nbsp;&nbsp;<strong style="color:var(--red);">Missing:</strong>
+        {% for s in r.missing %}<span class="skill-tag miss">{{ s }}</span>{% endfor %}
+      {% endif %}
+    </div>
+  </div>
+  {% endfor %}
+{% elif request.method == 'POST' %}
+  <div class="card" style="padding:2rem;text-align:center;color:var(--muted);">
+    No jobs matched. Try different skills!
+  </div>
+{% endif %}
+
+{% endblock %}

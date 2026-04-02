@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>{% block title %}Job Tracker{% endblock %}</title>
+  <link rel="stylesheet" href="/static/style.css"/>
+</head>
+<body>
+
+<div class="sidebar">
+  <div class="sidebar-logo"><span>⚡</span> JobTracker</div>
+  <nav>
+    <a href="/"             class="{% if request.path == '/' %}active{% endif %}">
+      <span class="icon">▣</span> Dashboard</a>
+    <a href="/companies"    class="{% if '/compan' in request.path %}active{% endif %}">
+      <span class="icon">🏢</span> Companies</a>
+    <a href="/jobs"         class="{% if '/job' in request.path and '/match' not in request.path %}active{% endif %}">
+      <span class="icon">💼</span> Jobs</a>
+    <a href="/applications" class="{% if '/application' in request.path %}active{% endif %}">
+      <span class="icon">📋</span> Applications</a>
+    <a href="/contacts"     class="{% if '/contact' in request.path %}active{% endif %}">
+      <span class="icon">👤</span> Contacts</a>
+    <a href="/match"        class="{% if '/match' in request.path %}active{% endif %}">
+      <span class="icon">🎯</span> Job Match</a>
+  </nav>
+  <div class="sidebar-footer">COP4751 · 2025</div>
+</div>
+
+<div class="main">
+  {% block content %}{% endblock %}
+</div>
+
+</body>
+</html>

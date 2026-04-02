@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+
+<div class="page-header">
+  <div>
+    <div class="page-title">Dashboard</div>
+    <div class="page-sub">Your job search overview</div>
+  </div>
+</div>
+
+<div class="stats-row">
+  <div class="stat-card green">
+    <div class="stat-label">Companies</div>
+    <div class="stat-value">{{ companies_count }}</div>
+  </div>
+  <div class="stat-card blue">
+    <div class="stat-label">Jobs Tracked</div>
+    <div class="stat-value">{{ jobs_count }}</div>
+  </div>
+  <div class="stat-card purple">
+    <div class="stat-label">Applications</div>
+    <div class="stat-value">{{ apps_count }}</div>
+  </div>
+  <div class="stat-card yellow">
+    <div class="stat-label">Contacts</div>
+    <div class="stat-value">{{ contacts_count }}</div>
+  </div>
+</div>
+
+<div class="dash-grid">
+  <div class="card">
+    <div class="card-header">Application Status</div>
+    <div class="card-body">
+      {% set colors = {
+        'Applied':'#38bdf8','Screening':'#fbbf24',
+        'Interview':'#a78bfa','Offer':'#4ade80',
+        'Rejected':'#f87171','Withdrawn':'#64748b'
+      } %}
+      {% set total = apps_count if apps_count > 0 else 1 %}
+      {% for status, count in status_counts.items() %}
+      <div class="status-item">
+        <div class="status-name">{{ status }}</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:{{ (count/total*100)|round }}%; background:{{ colors.get(status,'#64748b') }};"></div>
+        </div>
+        <div class="status-num">{{ count }}</div>
+      </div>
+      {% else %}
+      <p style="color:var(--muted);font-size:.85rem;">No applications yet.</p>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">Recent Applications</div>
+    <div class="card-body">
+      {% for r in recent %}
+      <div class="recent-row">
+        <div>
+          <div class="recent-title">{{ r.job_title }}</div>
+          <div class="recent-sub">{{ r.company_name }} · {{ r.application_date }}</div>
+        </div>
+        <span class="badge badge-{{ r.status|lower }}">{{ r.status }}</span>
+      </div>
+      {% else %}
+      <p style="color:var(--muted);font-size:.85rem;">No applications yet.</p>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}
